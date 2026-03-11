@@ -18,8 +18,8 @@ public class StatisticDaoImpl implements IStatisticDao {
 
         String sql = """
             SELECT c.id, c.name, COUNT(e.student_id) AS total
-            FROM courses c
-            LEFT JOIN enrollments e ON c.id = e.course_id
+            FROM course c
+            LEFT JOIN enrollment e ON c.id = e.course_id
             GROUP BY c.id, c.name
         """;
 
