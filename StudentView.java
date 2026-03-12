@@ -6,10 +6,7 @@ import BaiTapProject.Business.IStudentService;
 import BaiTapProject.Business.Impl.CourseServiceImpl;
 import BaiTapProject.Business.Impl.EnrollmentServiceImpl;
 import BaiTapProject.Business.Impl.StudentServiceImpl;
-import BaiTapProject.Model.Course;
-import BaiTapProject.Model.Enrollment;
-import BaiTapProject.Model.EnrollmentView;
-import BaiTapProject.Model.Student;
+import BaiTapProject.Model.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
@@ -104,36 +101,36 @@ public class StudentView {
             printEnrollmentTable(list);
         }
 
-        private static void cancelRegistration(int studentId) {
+    private static void cancelRegistration(int studentId) {
 
-            int id;
+        int courseId;
 
-            while (true) {
-                System.out.print("Nhập ID muốn hủy: ");
-                try {
-                    id = Integer.parseInt(sc.nextLine().trim());
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Nhập số hợp lệ");
-                }
+        while (true) {
+            System.out.print("Nhập ID khóa học muốn hủy: ");
+            try {
+                courseId = Integer.parseInt(sc.nextLine().trim());
+                break;
+            } catch (Exception e) {
+                System.out.println("Nhập số hợp lệ");
             }
-
-            Enrollment e = enrollmentService.findById(id);
-
-            if (e == null) {
-                System.out.println("Không tìm thấy đăng ký");
-                return;
-            }
-
-            if (e.getStudentId() != studentId) {
-                System.out.println("Đây không phải đăng ký của bạn");
-                return;
-            }
-
-            enrollmentService.cancelEnrollment(id);
         }
 
-        private static void changePassword(Student student) {
+        EnrollmentView info = enrollmentService.findEnrollmentView(studentId, courseId);
+
+        if (info == null) {
+            System.out.println("Bạn chưa đăng ký khóa học này");
+            return;
+        }
+
+        System.out.print("Xác nhận hủy đăng ký (y/n): ");
+        if (!sc.nextLine().trim().equalsIgnoreCase("y")) {
+            System.out.println("Hủy thao tác");
+            return;
+        }
+        enrollmentService.cancelEnrollment(info.getEnrollmentId());
+    }
+
+    private static void changePassword(Student student) {
             System.out.println("===== ĐỔI MẬT KHẨU =====");
 
             String oldPass;
