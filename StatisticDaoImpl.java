@@ -49,8 +49,8 @@ public class StatisticDaoImpl implements IStatisticDao {
         String sql = """
                 SELECT c.id, c.name, COUNT(e.id) AS total
                 FROM course c
-                LEFT JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
-                GROUP BY c.id
+                JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
+                GROUP BY c.id, c.name
                 ORDER BY total DESC
                 LIMIT 5
                 """;
@@ -82,8 +82,8 @@ public class StatisticDaoImpl implements IStatisticDao {
         String sql = """
                 SELECT c.id, c.name, COUNT(e.id) AS total
                 FROM course c
-                LEFT JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
-                GROUP BY c.id
+                JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
+                GROUP BY c.id, c.name
                 HAVING COUNT(e.id) > 10
                 ORDER BY total DESC
                 """;
