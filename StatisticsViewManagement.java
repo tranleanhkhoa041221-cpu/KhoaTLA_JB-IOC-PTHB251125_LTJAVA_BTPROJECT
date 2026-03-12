@@ -39,7 +39,7 @@ public class StatisticsViewManagement {
                 case 3 -> top5Courses();
                 case 4 -> coursesMoreThan10();
                 case 5 -> { return; }
-                default -> System.out.println("Lựa chọn không hợp lệ");
+                default -> System.out.println("Lựa chọn không hợp lệ. Vui lòng chỉ chọn 1-5");
             }
         }
     }
@@ -91,19 +91,19 @@ public class StatisticsViewManagement {
     private static void printStatisticTable(List<CourseStatistic> list) {
 
         System.out.printf("+%s+%s+%s+\n",
-                "-".repeat(8), "-".repeat(27), "-".repeat(12));
+                "-".repeat(8), "-".repeat(27), "-".repeat(16));
 
-        System.out.printf("| %-6s | %-25s | %-10s |\n",
+        System.out.printf("| %-6s | %-25s | %-14s |\n",
                 "ID", "Tên khóa học", "Số học viên");
 
         System.out.printf("+%s+%s+%s+\n",
-                "-".repeat(8), "-".repeat(27), "-".repeat(12));
+                "-".repeat(8), "-".repeat(27), "-".repeat(16));
 
         for (CourseStatistic cs : list) {
             cs.displayData();
         }
 
         System.out.printf("+%s+%s+%s+\n",
-                "-".repeat(8), "-".repeat(27), "-".repeat(12));
+                "-".repeat(8), "-".repeat(27), "-".repeat(16));
     }
 }

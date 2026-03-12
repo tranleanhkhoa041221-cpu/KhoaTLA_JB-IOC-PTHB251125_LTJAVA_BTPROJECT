@@ -39,7 +39,7 @@ public class CourseStatistic {
         }
 
         public void displayData() {
-            System.out.printf("| %-6d | %-25s | %-10d |\n",
+            System.out.printf("| %-6d | %-25s | %-14d |\n",
                     courseId,
                     courseName,
                     totalStudents);
