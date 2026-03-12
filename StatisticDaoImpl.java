@@ -47,7 +47,7 @@ public class StatisticDaoImpl implements IStatisticDao {
         List<CourseStatistic> list = new ArrayList<>();
 
         String sql = """
-                SELECT c.id, c.name, COUNT(e.id) AS total
+                SELECT c.id, c.name, COUNT(e.student_id) AS total
                 FROM course c
                 JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
                 GROUP BY c.id, c.name
@@ -80,7 +80,7 @@ public class StatisticDaoImpl implements IStatisticDao {
         List<CourseStatistic> list = new ArrayList<>();
 
         String sql = """
-                SELECT c.id, c.name, COUNT(e.id) AS total
+                SELECT c.id, c.name, COUNT(e.student_id) AS total
                 FROM course c
                 JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
                 GROUP BY c.id, c.name
