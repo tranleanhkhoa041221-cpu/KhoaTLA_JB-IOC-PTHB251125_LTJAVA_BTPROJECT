@@ -84,7 +84,7 @@ public class StatisticDaoImpl implements IStatisticDao {
                 FROM course c
                 JOIN enrollment e ON c.id = e.course_id AND e.status='CONFIRM'
                 GROUP BY c.id, c.name
-                HAVING COUNT(e.id) > 10
+                HAVING COUNT(e.student_id) > 10
                 ORDER BY total DESC
                 """;
 
